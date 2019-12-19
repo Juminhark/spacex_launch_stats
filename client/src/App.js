@@ -11,8 +11,6 @@ import ApolloClient from 'apollo-boost';
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql'
-  
-
 });
 
 const App = () => (
@@ -26,7 +24,6 @@ const App = () => (
         />
         <h1 className="display-4 my-3">Launches</h1>
         <Route exact path="/" component={MissionKey} />
-        
         <Route exact path="/" component={Launches} />
         <Route exact path="/launch/:flight_number" component={Launch} />
       </div>
