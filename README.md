@@ -1,5 +1,7 @@
 # spacex_launch_stats
-GraphQL With React &amp; Apollo
+GraphQL With React
+
+https://www.youtube.com/watch?v=SEMTj8w04Z8&t=4s
 
 # 2. 마크다운 사용법(문법)
 ## 2.1. 헤더Headers
