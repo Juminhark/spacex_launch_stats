@@ -1,34 +1,30 @@
 # spacex_launch_stats
 GraphQL With React &amp; Apollo
 
-query{
-  person(id: 1){
-    name
-  }
-}
-다음과 같이 요청하면 
+# 2. 마크다운 사용법(문법)
+## 2.1. 헤더Headers
+* 큰제목: 문서 제목
+    ```
+    This is an H1
+    =============
+    ```
+    This is an H1
+    =============
 
-import { people, getById } from './db'
+* 작은제목: 문서 부제목
+    ```
+    This is an H2
+    -------------
+    ```
+    This is an H2
+    -------------
 
-const resolvers = {
-    Query: {
-        people: () => people,
-        person: () => getById()
-    }
-}
-
-
-딱히 개선될 것 같지는 않다. 존 그루버가 신경안쓰고 있다고...
-
-● 순서없는 목록(글머리 기호)
-* 빨강
-  * 녹색
-    * 파랑
-
-+ 빨강
-  + 녹색
-    + 파랑
-
-- 빨강
-  - 녹색
-    - 파랑
+* 글머리: 1~6까지만 지원
+```
+# This is a H1
+## This is a H2
+### This is a H3
+#### This is a H4
+##### This is a H5
+###### This is a H6
+```
