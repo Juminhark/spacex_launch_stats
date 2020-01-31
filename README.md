@@ -12,7 +12,7 @@ entry point : (index.js) server.js
 
 > npm i -D nodemon    : devDependencies
 
-<code>
+<pre><code>
 "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js"
@@ -20,7 +20,7 @@ entry point : (index.js) server.js
 --> npm이 작동하면 scripts 안의 start, server을 시작한다.
 --> start는 node server.js파일을 읽어 code를 작동
 --> server는 nodemon이 server.js의 변화를 감지하여 server를 다시시작.
-</code>
+</code></pre>
 
 > npm run server
 
@@ -28,16 +28,14 @@ entry point : (index.js) server.js
 
 > npm i concurrently --> 동시에 여러 app을 작동.
 
-<pre>
-<code>
+<pre><code>
  "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   }
-</code>
-</pre>
+</code></pre>
 
 > npm run dev     --> client 와 server app 작동.
 
@@ -46,10 +44,10 @@ entry point : (index.js) server.js
 
 > npm install apollo-boost @apollo/react-hooks graphql
 
-
-extension : ES7 React/Redux/GraphQL/React-Native snippets
+extension추가 : ES7 React/Redux/GraphQL/React-Native snippets
 React Components
 
+<pre><code>
 rce -- 이것으로 아래 자동 생성--
 
 import React, { Component } from 'react'
@@ -60,5 +58,6 @@ export class FileName extends Component {
   }
 }
 export default $1
+</code></pre>
 
 
