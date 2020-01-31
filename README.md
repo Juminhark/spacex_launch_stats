@@ -8,10 +8,11 @@ https://www.youtube.com/watch?v=SEMTj8w04Z8&t=4s
 
 entry point : (index.js) server.js
 
->npm i graphql express-graphql express axios    : dependencies
+> npm i graphql express-graphql express axios    : dependencies
 
->npm i -D nodemon    : devDependencies
+> npm i -D nodemon    : devDependencies
 
+<code>
 "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js"
@@ -19,19 +20,22 @@ entry point : (index.js) server.js
 --> npm이 작동하면 scripts 안의 start, server을 시작한다.
 --> start는 node server.js파일을 읽어 code를 작동
 --> server는 nodemon이 server.js의 변화를 감지하여 server를 다시시작.
+</code>
 
->npm run server
+> npm run server
 
->npx create-react-app client
+> npx create-react-app client
 
 > npm i concurrently --> 동시에 여러 app을 작동.
 
+<code>
  "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   }
+</code>
 
 > npm run dev     --> client 와 server app 작동.
 
