@@ -1,63 +1,55 @@
-# spacex_launch_stats
+# apollo-graphql-spacex
 
-GraphQL With React
-https://www.youtube.com/watch?v=SEMTj8w04Z8&t=4s
+[`Traversy Media - graphql with react & apollo`](https://www.youtube.com/watch?v=SEMTj8w04Z8&list=PLillGF-RfqbZrjw48EXLdM4dsOhURCLZx)
 
+## init server
 
->npm init
+```sh
+npm init
 
-entry point : (index.js) server.js
+// entry point : (index.js) server.js
 
-> npm i graphql express-graphql express axios    : dependencies
+// dependencies
+npm i graphql express-graphql express axios
 
-> npm i -D nodemon    : devDependencies
+// devDependencies
+npm i -D nodemon
+```
 
-<pre><code>
+```ts
 "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js"
   }
---> npm이 작동하면 scripts 안의 start, server을 시작한다.
---> start는 node server.js파일을 읽어 code를 작동
---> server는 nodemon이 server.js의 변화를 감지하여 server를 다시시작.
-</code></pre>
+// npm start : node server.js
+// npm run server : nodemon이 server.js의 변화를 감지하여 server를 다시시작.
+```
 
-> npm run server
+## client
 
-> npx create-react-app client
+```sh
+// client, server 동시구동
+npm i concurrently
 
-> npm i concurrently --> 동시에 여러 app을 작동.
+// init client
+npx create-react-app client
 
-<pre><code>
+cd client
+
+npm install apollo-boost @apollo/react-hooks graphql
+```
+
+```ts
  "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   }
-</code></pre>
+// npm run client : client 실행
+// npm run dev : npm run server && npm run client
+```
 
-> npm run dev     --> client 와 server app 작동.
+## GraphiQL
 
-
-----------------client
-
-> npm install apollo-boost @apollo/react-hooks graphql
-
-extension추가 : ES7 React/Redux/GraphQL/React-Native snippets
-React Components
-
-<pre><code>
-rce -- 이것으로 아래 자동 생성--
-
-import React, { Component } from 'react'
-
-export class FileName extends Component {
-  render() {
-    return <div>$2</div>
-  }
-}
-export default $1
-</code></pre>
-
-
+http://localhost:5000/graphql
