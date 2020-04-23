@@ -36,7 +36,7 @@ npx create-react-app client
 
 cd client
 
-npm install apollo-boost @apollo/react-hooks graphql
+yarn add apollo-boost @apollo/react-hooks graphql classnames
 ```
 
 ```ts
