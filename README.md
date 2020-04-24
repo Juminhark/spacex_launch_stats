@@ -2,13 +2,10 @@
 
 update 2020-04-24
 
+- [SpaceX-API](https://github.com/r-spacex/SpaceX-API)
 - [GraphQL](https://graphql.org/)
 - [Apollo Server : v2](<(https://www.apollographql.com/docs/apollo-server/)>)
 - [Apollo Client (React) : v3.0 beta](https://www.apollographql.com/docs/react/v3.0-beta/get-started/)
-
-```sh
-cd client
-```
 
 ## [`Apollo Server : v2`](https://www.apollographql.com/docs/apollo-server/)
 
@@ -180,4 +177,53 @@ npm run server
 
 // client 완성 후
 npm run dev
+```
+
+## [GraphQL Playground](https://www.apollographql.com/docs/apollo-server/testing/graphql-playground/)
+
+Visually explore Apollo Server
+
+- ctrl + space : 목록보기
+- ctrl + enter : 실행
+
+`doc` , `schema` : 현재 api에서 정의된 내용들을 확인 가능.
+
+query `[name]` { `[query]` } 형식으로 `[name]`에 `[query]` 저장됨을 이용.
+
+```ts
+// example "Lauches"
+query Lauches{
+  launches {
+    flight_number
+    mission_name
+    rocket {
+      rocket_id
+    }
+  }
+}
+// example "Rockets"
+query Rockets{
+  rockets {
+    rocket_id
+    rocket_name
+    rocket_type
+  }
+}
+```
+
+### [Deploying with Heroku](https://www.apollographql.com/docs/apollo-server/deployment/heroku/)
+
+<hr />
+
+## create client
+
+```sh
+// init
+npx create-react-app client
+
+// client로 이동.
+cd client
+
+// vsc client
+code .
 ```
