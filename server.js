@@ -1,30 +1,9 @@
-const express = require('express');
-const graphqlHTTP = require('express-graphql');
-const cors = require('cors');
-const schema = require('./schema');
-const path = require('path');
+import { ApolloServer } from 'apollo-server';
+import { typeDefs, resolvers } from './schema';
 
-const app = express();
+const server = new ApolloServer({ typeDefs, resolvers });
 
-//Allow cross-origin
-app.use(cors());
-
-app.use(
-  '/graphql',
-  graphqlHTTP({
-    schema,
-    graphiql: true,
-  })
-);
-
-app.use(express.static('public'));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+// The `listen` method launches a web server.
+server.listen().then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`);
 });
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () =>
-  console.log(`Server started : http://localhost:${PORT}`)
-);

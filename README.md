@@ -34,12 +34,19 @@ Applications that run Apollo Server require two top-level dependencies
 
 ```sh
 npm i apollo-server graphql
+```
 
+- [axios](https://www.npmjs.com/package/axios)
+- [concurrently](https://www.npmjs.com/package/concurrently)
+- [nodemon](https://www.npmjs.com/package/nodemon)
+- babel
+
+```sh
 // dependencies
 npm i axios concurrently
 
 // devDependencies
-npm i -D nodemon
+npm i -D nodemon @babel/core @babel/node @babel/preset-env
 ```
 
 ```ts
@@ -54,6 +61,20 @@ npm i -D nodemon
 // npm run server : nodemon이 server.js의 변화를 감지하여 server를 다시시작.
 // npm run client : client 실행
 // npm run dev : npm run server && npm run client
+
+// .babelrc
+{
+  "presets": ["@babel/preset-env"]
+}
+
+// without babel
+const ApolloServer = require('apollo-server')
+
+// with babel
+import { ApolloServer } from 'apollo-server';
+
+// axios : 외부 api 사용
+axios.get('https://api.spacexdata.com/v3/launches').then((res) => res.data);
 ```
 
 ### Step 3 : Define your GraphQL schema
@@ -61,29 +82,102 @@ npm i -D nodemon
 Every GraphQL server (including Apollo Server) uses a schema to define the structure of data that clients can query.
 
 ```ts
-const { ApolloServer, gql } = require('apollo-server');
+// schema.js
+import { gql } from 'apollo-server';
 
-// A schema is a collection of type definitions (hence "typeDefs")
-// that together define the "shape" of queries that are executed against
-// your data.
-const typeDefs = gql`
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
-
-  # This "Book" type defines the queryable fields for every book in our data source.
-  type Book {
-    title: String
-    author: String
+export const typeDefs = gql`
+  # Rocket Type
+  type Rocket {
+    rocket_id: String
+    rocket_name: String
+    rocket_type: String
   }
 
-  # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "books" query returns an array of zero or more Books (defined above).
+  # Launch Type
+  type Launch {
+    flight_number: Int
+    mission_name: String
+    launch_year: String
+    launch_date_local: String
+    launch_success: Boolean
+    rocket: Rocket
+  }
+
   type Query {
-    books: [Book]
+    launches: [Launch]
+    lauch(flight_number: Int): Launch
   }
 `;
 ```
 
-## GraphiQL
+### Step 4 : Define your data set
 
-http://localhost:5000/graphql
+Now that we've defined the structure of our data, we can define the data itself. Apollo Server can fetch data from any source you connect to (including a database, a REST API, a static object storage service, or even another GraphQL server).
+
+이번 예제에서는 data를 query에서 reslover를 통해 외부 rest api에 axios 가 요청하여 가져온다.
+
+### Step 5 : Define your resolver
+
+We've defined our data set, but Apollo Server doesn't know that it should use that data set when it's executing a query. To fix this, we create a resolver.
+
+```ts
+// schema.js
+import axios from 'axios';
+
+export const resolvers = {
+  Query: {
+    launches: () => {
+      return axios
+        .get('https://api.spacexdata.com/v3/launches')
+        .then((res) => res.data);
+    },
+    lauch: (_, { flight_number }) => {
+      return axios
+        .get(`https://api.spacexdata.com/v3/launches/${flight_number}`)
+        .then((res) => res.data);
+    },
+    rockets: () => {
+      return axios
+        .get('https://api.spacexdata.com/v3/rockets')
+        .then((res) => res.data);
+    },
+    rocket: (_, { id }) => {
+      return axios
+        .get(`https://api.spacexdata.com/v3/rocket/${id}`)
+        .then((res) => res.data);
+    },
+  },
+};
+```
+
+### Step 6 : Create an instance of ApolloServer
+
+We've defined our schema, data set, and resolver. Now we just need to provide this information to Apollo Server when we initialize it.
+
+```ts
+// server.js
+import { ApolloServer } from 'apollo-server';
+import { typeDefs, resolvers } from './schema';
+
+// The ApolloServer constructor requires two parameters: your schema
+// definition and your set of resolvers.
+const server = new ApolloServer({ typeDefs, resolvers });
+
+// The `listen` method launches a web server.
+server.listen().then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`);
+});
+```
+
+### Step 7 : Start the Server
+
+```sh
+// node server.js
+npm start
+
+// nodemon server.js
+npm run server
+
+// client 완성 후
+npm run dev
+```

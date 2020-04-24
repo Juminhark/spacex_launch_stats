@@ -4,8 +4,8 @@
   "description": "App that lists SpaceX launch missions",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js",
+    "start": "node --exec babel-node server.js",
+    "server": "nodemon --exec babel-node server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
@@ -18,6 +18,9 @@
     "graphql": "^14.6.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
     "nodemon": "^1.19.4"
   }
 }
