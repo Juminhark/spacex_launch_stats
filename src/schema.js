@@ -25,7 +25,7 @@ export const typeDefs = gql`
   # clients can execute, along with the return type for each.
   type Query {
     launches: [Launch]
-    lauch(flight_number: Int): Launch
+    launch(flight_number: Int): Launch
     rockets: [Rocket]
     rocket(id: Int): Rocket
   }
@@ -40,7 +40,7 @@ export const resolvers = {
         .get('https://api.spacexdata.com/v3/launches')
         .then((res) => res.data);
     },
-    lauch: (_, { flight_number }) => {
+    launch: (_, { flight_number }) => {
       return axios
         .get(`https://api.spacexdata.com/v3/launches/${flight_number}`)
         .then((res) => res.data);

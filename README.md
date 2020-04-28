@@ -7,6 +7,10 @@ update 2020-04-24
 - [Apollo Server : v2](<(https://www.apollographql.com/docs/apollo-server/)>)
 - [Apollo Client (React) : v3.0 beta](https://www.apollographql.com/docs/react/v3.0-beta/get-started/)
 
+### Reference
+
+- [`velog.io/@gwak2837 - 서버-클라이언트 풀스택 웹 개발`](https://velog.io/@gwak2837/Apollo-%EC%84%9C%EB%B2%84%EB%A1%9C-GraphQL-API-%EA%B0%9C%EB%B0%9C%ED%95%98%EA%B8%B0-1)
+
 ## [`Apollo Server : v2`](https://www.apollographql.com/docs/apollo-server/)
 
 Apollo Server is an [`open-source`](https://github.com/apollographql/apollo-server), spec-compliant GraphQL server that's compatible with any Graphql client, including [`Apollo Client`](https://www.apollographql.com/docs/react/).
