@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const LAUNCH_QUERY = gql`
   query LaunchQuery($flight_number: Int!) {
