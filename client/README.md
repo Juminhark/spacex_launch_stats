@@ -210,6 +210,10 @@ query LaunchQuery ($flight_number: Int!) {
 
 ```ts
 // Launch.js
+import React from 'react';
+import { useQuery, gql } from '@apollo/client';
+import { useParams, Link } from 'react-router-dom';
+
 // useParams() 을 통해 parameter 값을 저장하고
 // parameter 값을 포함한 query로 데이터를 받아와 사용한다.
 const Launch = () => {
