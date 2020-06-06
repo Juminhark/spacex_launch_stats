@@ -12,7 +12,7 @@
   "author": "zillda",
   "license": "MIT",
   "dependencies": {
-    "apollo-server": "^2.12.0",
+    "apollo-server": "^2.14.2",
     "axios": "^0.19.2",
     "concurrently": "^5.1.0",
     "graphql": "^14.6.0"
